@@ -7,9 +7,9 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">PawShop</h3>
+            <h3 className="font-bold text-lg mb-4">Little Evie's Gift Shop</h3>
             <p className="text-sm text-muted-foreground">
-              Your one-stop shop for premium dog accessories.
+              Your one-stop shop for unique and charming gifts.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} PawShop. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Little Evie's Gift Shop. All rights reserved.</p>
         </div>
       </div>
     </footer>

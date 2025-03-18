@@ -17,7 +17,7 @@ export default function Header() {
     <header className="border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/">
-          <a className="text-2xl font-bold text-primary">PawShop</a>
+          <a className="text-2xl font-bold text-primary">Little Evie's Gift Shop</a>
         </Link>
 
         <nav className="hidden md:flex space-x-6">
