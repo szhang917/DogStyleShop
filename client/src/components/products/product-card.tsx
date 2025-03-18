@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { ShoppingCart } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -13,6 +14,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const { dispatch } = useCart();
   const { toast } = useToast();
+  const [imageError, setImageError] = useState(false);
 
   const handleAddToCart = () => {
     dispatch({ type: "ADD_ITEM", payload: product });
@@ -22,27 +24,28 @@ export default function ProductCard({ product }: ProductCardProps) {
     });
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <Card className="overflow-hidden">
       <Link href={`/product/${product.id}`}>
-        <a>
-          <div className="aspect-square overflow-hidden">
-            <img
-              src={product.images[0]}
-              alt={product.name}
-              className="w-full h-full object-cover transition-transform hover:scale-105"
-            />
-          </div>
-        </a>
+        <div className="aspect-square overflow-hidden bg-muted">
+          <img
+            src={imageError ? "https://placehold.co/400x400?text=Product+Image" : product.images[0]}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform hover:scale-105"
+            onError={handleImageError}
+          />
+        </div>
       </Link>
-      
+
       <CardContent className="p-4">
         <Link href={`/product/${product.id}`}>
-          <a className="block">
-            <h3 className="font-semibold text-lg mb-2 hover:text-primary">
-              {product.name}
-            </h3>
-          </a>
+          <h3 className="font-semibold text-lg mb-2 hover:text-primary">
+            {product.name}
+          </h3>
         </Link>
         <p className="text-muted-foreground text-sm mb-2 line-clamp-2">
           {product.description}
