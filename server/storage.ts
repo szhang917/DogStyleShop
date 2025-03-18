@@ -24,22 +24,69 @@ export class MemStorage implements IStorage {
   private initializeProducts() {
     const products: InsertProduct[] = [
       {
-        name: "Luxury Dog Collar",
-        description: "Premium leather collar with soft padding",
+        name: "Luxury Leather Dog Collar",
+        description: "Premium handcrafted leather collar with soft padding and durable brass hardware",
         price: "29.99",
         images: ["https://images.unsplash.com/photo-1511169245529-95ab68997f95"],
         category: "Collars",
         stock: 50
       },
       {
-        name: "Interactive Dog Toy",
-        description: "Durable puzzle toy for mental stimulation",
+        name: "Interactive Puzzle Toy",
+        description: "Challenging puzzle toy that keeps dogs mentally stimulated and entertained",
         price: "19.99",
         images: ["https://images.unsplash.com/photo-1546421845-6471bdcf3edf"],
         category: "Toys",
         stock: 100
       },
-      // Add more products using the stock photos
+      {
+        name: "Cozy Pet Bed",
+        description: "Ultra-soft orthopedic bed perfect for dogs of all sizes",
+        price: "49.99",
+        images: ["https://images.unsplash.com/photo-1541599468348-e96984315921"],
+        category: "Beds",
+        stock: 30
+      },
+      {
+        name: "Adjustable Harness",
+        description: "Comfortable and secure harness with reflective strips for night walks",
+        price: "34.99",
+        images: ["https://images.unsplash.com/photo-1576201836106-db1758fd1c97"],
+        category: "Harnesses",
+        stock: 75
+      },
+      {
+        name: "Squeaky Ball Set",
+        description: "Set of 3 durable squeaky balls in different sizes",
+        price: "12.99",
+        images: ["https://images.unsplash.com/photo-1570824104453-508955ab713e"],
+        category: "Toys",
+        stock: 200
+      },
+      {
+        name: "Travel Water Bottle",
+        description: "Portable water bottle with built-in drinking bowl for walks and trips",
+        price: "15.99",
+        images: ["https://images.unsplash.com/photo-1597843787343-4840b9f0d3c4"],
+        category: "Accessories",
+        stock: 150
+      },
+      {
+        name: "Grooming Brush",
+        description: "Professional-grade brush for all coat types",
+        price: "24.99",
+        images: ["https://images.unsplash.com/photo-1516734212186-a967f81ad0d7"],
+        category: "Grooming",
+        stock: 80
+      },
+      {
+        name: "Treat Dispenser",
+        description: "Interactive toy that dispenses treats while playing",
+        price: "16.99",
+        images: ["https://images.unsplash.com/photo-1581467655410-0c2bf55d9d6c"],
+        category: "Toys",
+        stock: 120
+      }
     ];
 
     products.forEach(product => {

@@ -3,7 +3,12 @@ import ProductCard from "./product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Product } from "@shared/schema";
 
-export default function ProductGrid() {
+interface ProductGridProps {
+  category?: string;
+  searchQuery?: string;
+}
+
+export default function ProductGrid({ category, searchQuery }: ProductGridProps) {
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products"],
   });
@@ -31,9 +36,25 @@ export default function ProductGrid() {
     );
   }
 
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory = !category || product.category === category;
+    const matchesSearch = !searchQuery || 
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  if (filteredProducts.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">No products match your criteria.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {products.map((product) => (
+      {filteredProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
