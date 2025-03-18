@@ -16,16 +16,16 @@ export default function Header() {
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-primary">
-          Little Evie's Gift Shop
+        <Link href="/">
+          <a className="text-2xl font-bold text-primary">Little Evie's Gift Shop</a>
         </Link>
 
         <nav className="hidden md:flex space-x-6">
-          <Link href="/" className="text-foreground/80 hover:text-foreground">
-            Home
+          <Link href="/">
+            <a className="text-foreground/80 hover:text-foreground">Home</a>
           </Link>
-          <Link href="/products" className="text-foreground/80 hover:text-foreground">
-            Products
+          <Link href="/products">
+            <a className="text-foreground/80 hover:text-foreground">Products</a>
           </Link>
         </nav>
 
@@ -54,11 +54,11 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left">
               <nav className="flex flex-col space-y-4 mt-8">
-                <Link href="/" className="text-foreground/80 hover:text-foreground">
-                  Home
+                <Link href="/">
+                  <a className="text-foreground/80 hover:text-foreground">Home</a>
                 </Link>
-                <Link href="/products" className="text-foreground/80 hover:text-foreground">
-                  Products
+                <Link href="/products">
+                  <a className="text-foreground/80 hover:text-foreground">Products</a>
                 </Link>
               </nav>
             </SheetContent>

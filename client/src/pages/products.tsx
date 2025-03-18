@@ -13,12 +13,13 @@ import type { Product } from "@shared/schema";
 
 export default function Products() {
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState<string | null>(null);
+  const [category, setCategory] = useState("");
 
   const { data: products = [] } = useQuery<Product[]>({
     queryKey: ["/api/products"],
   });
 
+  // Convert Set to Array for TypeScript compatibility
   const categories = Array.from(new Set(products.map((p) => p.category)));
 
   const filteredProducts = products.filter((product) => {
@@ -41,12 +42,12 @@ export default function Products() {
           className="sm:max-w-xs"
         />
 
-        <Select value={category || undefined} onValueChange={setCategory}>
+        <Select value={category} onValueChange={setCategory}>
           <SelectTrigger className="sm:max-w-xs">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Categories</SelectItem>
+            <SelectItem value="">All Categories</SelectItem>
             {categories.map((cat) => (
               <SelectItem key={cat} value={cat}>
                 {cat}
