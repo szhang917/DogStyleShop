@@ -56,10 +56,6 @@ export default function ProductPage() {
   const handleAddToCart = () => {
     dispatch({ type: "ADD_ITEM", payload: product });
     setIsAdded(true);
-    toast({
-      title: "Added to cart",
-      description: `${product.name} has been added to your cart.`,
-    });
   };
 
   return (

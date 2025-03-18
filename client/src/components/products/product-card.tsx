@@ -3,7 +3,6 @@ import { Link } from "wouter";
 import { ShoppingCart, Check } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/lib/cart";
 import type { Product } from "@shared/schema";
 
@@ -13,7 +12,6 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { dispatch } = useCart();
-  const { toast } = useToast();
   const [imageError, setImageError] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -29,10 +27,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   const handleAddToCart = () => {
     dispatch({ type: "ADD_ITEM", payload: product });
     setIsAdded(true);
-    toast({
-      title: "Added to cart",
-      description: `${product.name} has been added to your cart.`,
-    });
   };
 
   const handleImageError = () => {
