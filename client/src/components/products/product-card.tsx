@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Check } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -15,9 +15,20 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { dispatch } = useCart();
   const { toast } = useToast();
   const [imageError, setImageError] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+
+  useEffect(() => {
+    if (isAdded) {
+      const timer = setTimeout(() => {
+        setIsAdded(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isAdded]);
 
   const handleAddToCart = () => {
     dispatch({ type: "ADD_ITEM", payload: product });
+    setIsAdded(true);
     toast({
       title: "Added to cart",
       description: `${product.name} has been added to your cart.`,
@@ -57,10 +68,20 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Button 
           className="w-full" 
           onClick={handleAddToCart}
-          disabled={product.stock === 0}
+          disabled={product.stock === 0 || isAdded}
+          variant={isAdded ? "secondary" : "default"}
         >
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          Add to Cart
+          {isAdded ? (
+            <>
+              <Check className="mr-2 h-4 w-4" />
+              Added to Cart
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Add to Cart
+            </>
+          )}
         </Button>
       </CardFooter>
     </Card>

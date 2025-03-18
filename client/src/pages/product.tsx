@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -11,10 +12,20 @@ export default function ProductPage() {
   const { id } = useParams();
   const { dispatch } = useCart();
   const { toast } = useToast();
+  const [isAdded, setIsAdded] = useState(false);
 
   const { data: product, isLoading } = useQuery<Product>({
     queryKey: [`/api/products/${id}`],
   });
+
+  useEffect(() => {
+    if (isAdded) {
+      const timer = setTimeout(() => {
+        setIsAdded(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isAdded]);
 
   if (isLoading) {
     return (
@@ -44,6 +55,7 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     dispatch({ type: "ADD_ITEM", payload: product });
+    setIsAdded(true);
     toast({
       title: "Added to cart",
       description: `${product.name} has been added to your cart.`,
@@ -86,10 +98,20 @@ export default function ProductPage() {
             size="lg"
             className="w-full"
             onClick={handleAddToCart}
-            disabled={product.stock === 0}
+            disabled={product.stock === 0 || isAdded}
+            variant={isAdded ? "secondary" : "default"}
           >
-            <ShoppingCart className="mr-2 h-5 w-5" />
-            Add to Cart
+            {isAdded ? (
+              <>
+                <Check className="mr-2 h-5 w-5" />
+                Added to Cart
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Add to Cart
+              </>
+            )}
           </Button>
         </div>
       </div>
