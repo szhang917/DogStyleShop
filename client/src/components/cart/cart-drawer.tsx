@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { Trash2, X } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   SheetHeader,
   SheetTitle,
-  SheetClose,
 } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart";
 
@@ -34,14 +33,7 @@ export default function CartDrawer() {
   return (
     <div className="h-full flex flex-col">
       <SheetHeader className="px-4 py-6 border-b">
-        <div className="flex items-center justify-between">
-          <SheetTitle>Shopping Cart</SheetTitle>
-          <SheetClose asChild>
-            <Button variant="ghost" size="icon">
-              <X className="h-4 w-4" />
-            </Button>
-          </SheetClose>
-        </div>
+        <SheetTitle>Shopping Cart</SheetTitle>
       </SheetHeader>
 
       {state.items.length === 0 ? (
