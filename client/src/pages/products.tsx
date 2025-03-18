@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import ProductGrid from "@/components/products/product-grid";
+import ProductCard from "@/components/products/product-card";
 import type { Product } from "@shared/schema";
 
 export default function Products() {
@@ -19,7 +19,8 @@ export default function Products() {
     queryKey: ["/api/products"],
   });
 
-  const categories = [...new Set(products.map((p) => p.category))];
+  // Convert Set to Array for TypeScript compatibility
+  const categories = Array.from(new Set(products.map((p) => p.category)));
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name
@@ -31,7 +32,7 @@ export default function Products() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">All Products</h1>
+      <h1 className="text-3xl font-bold mb-8">Our Products</h1>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <Input

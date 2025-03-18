@@ -2,10 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/lib/cart";
 import type { Product } from "@shared/schema";
@@ -71,7 +68,7 @@ export default function ProductPage() {
         <div className="space-y-6">
           <h1 className="text-3xl font-bold">{product.name}</h1>
           <p className="text-2xl font-bold">${product.price}</p>
-          
+
           <div className="prose">
             <p>{product.description}</p>
           </div>
