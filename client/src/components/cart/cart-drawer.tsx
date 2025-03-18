@@ -9,7 +9,6 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart";
-import { cn } from "@/lib/utils";
 
 export default function CartDrawer() {
   const [location, navigate] = useLocation();
