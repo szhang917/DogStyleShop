@@ -39,7 +39,7 @@ export default function Products() {
               <SelectValue placeholder="All Categories" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Categories</SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
               {categories.map((cat) => (
                 <SelectItem key={cat} value={cat}>
                   {cat}
@@ -50,7 +50,7 @@ export default function Products() {
         </div>
       </div>
 
-      <ProductGrid category={category} searchQuery={search} />
+      <ProductGrid category={category === "all" ? "" : category} searchQuery={search} />
     </div>
   );
 }
